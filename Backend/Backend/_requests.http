@@ -1,0 +1,142 @@
+@baseUrl = http://localhost:5000
+##################################################
+
+
+################################################## Customers
+DELETE {{baseUrl}}/Customers?customerId=1
+#####
+GET {{baseUrl}}/Customers
+#####
+POST {{baseUrl}}/Customers
+Content-type: application/json
+
+{
+      "id": 1,
+   "name": "abc"
+   }
+#####
+PUT {{baseUrl}}/Customers
+Content-type: application/json
+
+{
+   "id": 1,
+   "name": "abc"
+}
+#####
+
+################################################## Orders
+DELETE {{baseUrl}}/Orders
+Content-type: application/json
+
+[1,2,3]
+#####
+GET {{baseUrl}}/Orders
+#####
+GET {{baseUrl}}/Orders/filter/abc
+#####
+GET {{baseUrl}}/Orders/MonthInfos/abc
+#####
+GET {{baseUrl}}/Orders/page/1
+#####
+GET {{baseUrl}}/Orders/YearInfo/abc
+#####
+POST {{baseUrl}}/Orders
+Content-type: application/json
+
+{
+   "id": 1,
+      "inputDate": "abc",
+      "deliveryDate": "abc",
+      "billCreatedDate": "abc",
+      "paymentDate": "abc",
+      "documentNr": 1,
+      "brutto": 1,
+      "netto": 1,
+      "tax": 1,
+      "customerName": "abc",
+      "bill": 1,
+      "po": "abc",
+      "status": "abc",
+      "uid": "abc"
+   }
+#####
+POST {{baseUrl}}/Orders/createPdf
+Content-type: application/json
+
+["abc","def","ghi"]
+#####
+POST {{baseUrl}}/Orders/import/csv
+Content-type: application/json
+
+["abc","def","ghi"]
+#####
+POST {{baseUrl}}/Orders/OpenPdf?po=abc&bill=abc&billCreatedDate=abc
+#####
+PUT {{baseUrl}}/Orders/1
+Content-type: application/json
+
+{
+   "id": 1,
+   "inputDate": "abc",
+   "deliveryDate": "abc",
+   "billCreatedDate": "abc",
+   "paymentDate": "abc",
+      "documentNr": 1,
+      "brutto": 1,
+      "netto": 1,
+      "tax": 1,
+      "customerName": "abc",
+      "bill": 1,
+      "po": "abc",
+      "status": "abc",
+      "uid": "abc"
+   }
+#####
+PUT {{baseUrl}}/Orders/Status
+Content-type: application/json
+
+[{
+      "id": 1,
+      "inputDate": "abc",
+      "deliveryDate": "abc",
+      "billCreatedDate": "abc",
+      "paymentDate": "abc",
+   "documentNr": 1,
+      "brutto": 1,
+      "netto": 1,
+      "tax": 1,
+      "customerName": "abc",
+      "bill": 1,
+      "po": "abc",
+      "status": "abc",
+      "uid": "abc"
+   },
+{
+      "id": 2,
+      "inputDate": "def",
+      "deliveryDate": "def",
+      "billCreatedDate": "def",
+      "paymentDate": "def",
+      "documentNr": 2,
+      "brutto": 2,
+      "netto": 2,
+      "tax": 2,
+      "customerName": "def",
+      "bill": 2,
+      "po": "def",
+      "status": "def",
+      "uid": "def"
+   }]
+#####
+
+################################################## Status
+GET {{baseUrl}}/Status
+#####
+POST {{baseUrl}}/Status
+Content-type: application/json
+
+{
+      "id": 1,
+      "name": "abc"
+   }
+#####
