@@ -1,0 +1,19 @@
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'app-navbar',
+  imports: [RouterLink],
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.scss'
+})
+export class NavbarComponent {
+goto() {
+throw new Error('Method not implemented.');
+}
+  isMenuOpen = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+}

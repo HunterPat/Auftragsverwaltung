@@ -961,7 +961,7 @@ namespace Backend.Services
                 if (filteredOrders.Count != 0)
                     return filteredOrders;
             }
-            return orders.Where(x => x.PO.Contains(filterTxt) || x.CustomerName.Contains(filterTxt) || (x.UID?.Contains(filterTxt) ?? false)).ToList();
+                return orders.Where(x => x.PO.Contains(filterTxt) || x.CustomerName.Contains(filterTxt) || (x.UID?.Contains(filterTxt) ?? false) || x.InputDate.ToString().Contains(filterTxt) || (x.DeliveryDate?.ToString().Contains(filterTxt) ?? false) || (x.DeliveryDate?.ToString().Contains(filterTxt) ?? false) || (x.BillCreatedDate?.ToString().Contains(filterTxt) ?? false) || (x.PaymentDate?.ToString().Contains(filterTxt) ?? false)).ToList();
         }
     }
 }

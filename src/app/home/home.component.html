@@ -1,0 +1,214 @@
+<div>
+  <app-table-bar></app-table-bar>
+</div>
+<div style="overflow-y: auto; max-height: 500px;">
+  <table class="table table-bordered" >
+    <thead>
+      <tr class="table-info">
+        <th scope="col" style="width: 30px; height: 20px;"><input #orderCheck type="checkbox" [(ngModel)]="selectAll"
+            (click)="ordersCheckboxClicked(orderCheck.checked)"></th>
+        <th scope="col" (click)="dataService.GetOrderedOrders('id')">
+          #
+          <span [hidden]="dataService.currentSortProperty() !== 'id'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('inputDate')">
+          Eingangs-<br>datum
+          <span [hidden]="dataService.currentSortProperty() !== 'inputDate'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('deliveryDate')">
+          Liefer-<br>datum
+          <span [hidden]="dataService.currentSortProperty() !== 'deliveryDate'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('billCreatedDate')">
+          Rechnungs-<br>datum
+          <span [hidden]="dataService.currentSortProperty() !== 'billCreatedDate'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('paymentDate')">
+          Zahlungs-<br>datum
+          <span [hidden]="dataService.currentSortProperty() !== 'paymentDate'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('documentNr')">
+          Beleg Nr.
+          <span [hidden]="dataService.currentSortProperty() !== 'documentNr'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('brutto')">
+          Brutto
+          <span [hidden]="dataService.currentSortProperty() !== 'brutto'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('tax')">
+          Ust.%
+          <span [hidden]="dataService.currentSortProperty() !== 'tax'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('netto')">
+          Netto
+          <span [hidden]="dataService.currentSortProperty() !== 'netto'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('steuer')">
+          Steuer
+          <span [hidden]="dataService.currentSortProperty() !== 'steuer'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('customerName')">
+          Kunde
+          <span [hidden]="dataService.currentSortProperty() !== 'customerName'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('bill')">
+          Rechnung
+          <span [hidden]="dataService.currentSortProperty() !== 'bill'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('po')">
+          PO
+          <span [hidden]="dataService.currentSortProperty() !== 'po'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('status')">
+          Status
+          <span [hidden]="dataService.currentSortProperty() !== 'status'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+        <th scope="col" (click)="dataService.GetOrderedOrders('uid')">
+          UID
+          <span [hidden]="dataService.currentSortProperty() !== 'uid'">
+            <i [class]="dataService.sortDirectionIsAsc() ? 'arrow-up-icon' : 'arrow-down-icon'"></i>
+          </span>
+        </th>
+
+      </tr>
+    </thead>
+    <tbody>
+      @for (order of dataService.orders(); track order.id) {
+      <tr scope="row">
+        <td style="width: 30px; height: 20px;"><input type="checkbox" [(ngModel)]="order.isSelected"></td>
+        <td>{{$index+1}}</td>
+        <td><input #inputDateInput class="form-control innertd"
+            (blur)="selectedOrderInputDatechanged(inputDateInput.value, order)"
+            [value]="ParseDateForFrontend(order.inputDate)"></td>
+        <td><input #deliveryDateInput class="form-control innertd"
+            (blur)="selectedOrderDeliveryDatechanged(deliveryDateInput.value, order)"
+            [value]="ParseDateForFrontend(order.deliveryDate)"></td>
+        <td><input #billCreatedDateInput class="form-control innertd"
+            (blur)="selectedOrderBillDatechanged(billCreatedDateInput.value, order)"
+            [value]="ParseDateForFrontend(order.billCreatedDate)"></td>
+        <td><input #paymentDateInput class="form-control innertd"
+            (blur)="selectedOrderPaymentDatechanged(paymentDateInput.value, order)"
+            [value]="ParseDateForFrontend(order.paymentDate)"></td>
+        <td><input class="form-control innertd" (blur)="changeSelectedOrder(order)" [(ngModel)]="order.documentNr"></td>
+        <td><input class="form-control innertd" (blur)="changeSelectedOrder(order)" [(ngModel)]="order.brutto">
+        </td>
+        <td><input class="form-control innertd" (blur)="changeSelectedOrder(order)" [(ngModel)]="order.tax">
+        </td>
+        <td><input class="form-control innertd" (blur)="changeSelectedOrder(order)" [(ngModel)]="order.netto">
+        </td>
+        <td><span class="innertd">{{(order.brutto! * (order.tax!/100)).toFixed(2)}} </span></td>
+        <td><input class="form-control innertd" style="width: fit-content;" (blur)="changeSelectedOrder(order)" [(ngModel)]="order.customerName">
+        </td>
+        <td><input class="form-control innertd" (blur)="changeSelectedOrder(order)"
+            (click)="OpenPdf(null!, order.bill?.toString()!, order.billCreatedDate!)" [(ngModel)]="order.bill">
+        </td>
+        <td><input class="form-control innertd" style="width: fit-content;"
+            (click)="OpenPdf(order.po!, null!, order.billCreatedDate!)" (blur)="changeSelectedOrder(order)"
+            [(ngModel)]="order.po"></td>
+        <td><select #statusCb class="form-select innertd" style="width: 150px;"
+            (change)="ChangeStatus(order, statusCb.value)" [(ngModel)]="order.status">
+            @for (status of dataService.statusList(); track status.id) {
+            <option [value]="status.name">{{status.name}}</option>}
+          </select></td>
+        <td><input class="form-control innertd" style="width: fit-content;" (blur)="changeSelectedOrder(order)"
+            [(ngModel)]="order.uid">
+        </td>
+      </tr>
+      }
+      @if(addNewOrder()){
+      <tr #addOrderRow>
+        <td></td>
+        <td></td>
+        <td><input class="form-control innertd" [(ngModel)]="newOrder().inputDate">
+        </td>
+        <td><input class="form-control innertd" [(ngModel)]="newOrder().deliveryDate"></td>
+        <td></td>
+        <td></td>
+        <td><input class="form-control innertd" [(ngModel)]="newOrder().documentNr"></td>
+        <td><input class="form-control innertd" [(ngModel)]="newOrder().brutto">
+        </td>
+        <td><input class="form-control innertd" [(ngModel)]="newOrder().tax">
+        </td>
+        <td><span class="innertd">{{newOrder().tax??0 > 0 ? CalcNetto().toFixed(2) : 0}}</span>
+        </td>
+        <td><span class="innertd">{{newOrder().tax??0 > 0 ? ((newOrder().brutto??0) *
+            ((newOrder().tax??0)/100)).toFixed(2) : 0}}
+          </span></td>
+        <td><input class="form-control innertd" [(ngModel)]="newOrder().customerName"></td>
+        <td><input class="form-control innertd" [(ngModel)]="newOrder().bill">
+        </td>
+        <td><input class="form-control innertd" [(ngModel)]="newOrder().po"></td>
+        <td><select #statusCb class="form-select innertd" style="width: 150px;" [(ngModel)]="newOrder().status"
+            value="In Arbeit">
+            @for (status of dataService.statusList(); track status.id) {
+            <option [value]="status.name">{{status.name}}</option>}
+          </select></td>
+        <td><input class="form-control innertd" [(ngModel)]="newOrder().uid">
+        </td>
+      </tr>}
+    </tbody>
+  </table>
+</div>
+<div style="display: flex; justify-content: space-between; margin-top: 10px; border-top: 1px solid black; padding-top: 5px;">
+  <div style="display: flex; align-items: start; margin-left: 0;" >
+    <button class="btn btn-secondary"><img class="arrow_img" (click)="PageButtonClicked(-1)" src="/back_arrow.png" ></button>
+    <p style="padding: 5px; text-align: center; vertical-align: middle;">{{dataService.pageNumber()}}</p>
+    <button class="btn btn-secondary"><img class="arrow_img" (click)="PageButtonClicked(1)" src="/next_arrow.png" ></button>
+  </div>
+<div style="text-align: right; margin-right: 0px;">
+  <input type="file" accept=".csv" #fileInput style="display: none" (change)="onFileSelected($event)" />
+
+  <button style="text-align: left;" class="btn btn-info" (click)="AddNewOrder()">Auftrag hinzufügen</button>
+  <button class="btn btn-primary" (click)="openFileExplorer(fileInput)">Aufträge hinzufügen (.csv)</button>
+  <button class="btn btn-danger" (click)="deleteOrders()"
+    [disabled]="dataService.orders() === undefined || dataService.orders() === null ? true :  dataService.GetSelectedOrders().length <= 0">{{dataService.GetSelectedOrders().length
+    > 1 ? "Aufträge löschen" : "Auftrag löschen"}}</button>
+  <button class="btn btn-success"
+    (click)="openFileExplorer(fileInput)">Rechnung
+    erstellen</button>
+</div>
+</div>
+<p style="color: green; text-align: center; margin: 20px; font-weight: bold;">{{messageText()}}</p>
+<p class="errorText">{{errorText()}}</p>

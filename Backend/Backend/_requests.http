@@ -12,16 +12,16 @@ Content-type: application/json
 
 {
       "id": 1,
-   "name": "abc"
-   }
+      "name": "abc"
+}
 #####
 PUT {{baseUrl}}/Customers
 Content-type: application/json
 
 {
-   "id": 1,
-   "name": "abc"
-}
+      "id": 1,
+      "name": "abc"
+   }
 #####
 
 ################################################## Orders
@@ -44,21 +44,21 @@ POST {{baseUrl}}/Orders
 Content-type: application/json
 
 {
-   "id": 1,
-      "inputDate": "abc",
-      "deliveryDate": "abc",
-      "billCreatedDate": "abc",
-      "paymentDate": "abc",
-      "documentNr": 1,
-      "brutto": 1,
-      "netto": 1,
-      "tax": 1,
-      "customerName": "abc",
-      "bill": 1,
-      "po": "abc",
-      "status": "abc",
-      "uid": "abc"
-   }
+         "id": 1,
+         "inputDate": "abc",
+         "deliveryDate": "abc",
+         "billCreatedDate": "abc",
+         "paymentDate": "abc",
+         "documentNr": 1,
+         "brutto": 1,
+         "netto": 1,
+         "tax": 1,
+         "customerName": "abc",
+         "bill": 1,
+         "po": "abc",
+         "status": "abc",
+         "uid": "abc"
+      }
 #####
 POST {{baseUrl}}/Orders/createPdf
 Content-type: application/json
@@ -76,57 +76,57 @@ PUT {{baseUrl}}/Orders/1
 Content-type: application/json
 
 {
-   "id": 1,
-   "inputDate": "abc",
-   "deliveryDate": "abc",
-   "billCreatedDate": "abc",
-   "paymentDate": "abc",
-      "documentNr": 1,
-      "brutto": 1,
-      "netto": 1,
-      "tax": 1,
-      "customerName": "abc",
-      "bill": 1,
-      "po": "abc",
-      "status": "abc",
-      "uid": "abc"
-   }
+      "id": 1,
+      "inputDate": "abc",
+         "deliveryDate": "abc",
+         "billCreatedDate": "abc",
+         "paymentDate": "abc",
+         "documentNr": 1,
+         "brutto": 1,
+         "netto": 1,
+         "tax": 1,
+         "customerName": "abc",
+         "bill": 1,
+         "po": "abc",
+         "status": "abc",
+         "uid": "abc"
+      }
 #####
 PUT {{baseUrl}}/Orders/Status
 Content-type: application/json
 
 [{
-      "id": 1,
+         "id": 1,
       "inputDate": "abc",
-      "deliveryDate": "abc",
-      "billCreatedDate": "abc",
-      "paymentDate": "abc",
-   "documentNr": 1,
-      "brutto": 1,
-      "netto": 1,
-      "tax": 1,
-      "customerName": "abc",
-      "bill": 1,
-      "po": "abc",
-      "status": "abc",
-      "uid": "abc"
-   },
+         "deliveryDate": "abc",
+         "billCreatedDate": "abc",
+         "paymentDate": "abc",
+         "documentNr": 1,
+         "brutto": 1,
+         "netto": 1,
+         "tax": 1,
+         "customerName": "abc",
+         "bill": 1,
+         "po": "abc",
+         "status": "abc",
+         "uid": "abc"
+      },
 {
-      "id": 2,
-      "inputDate": "def",
-      "deliveryDate": "def",
-      "billCreatedDate": "def",
-      "paymentDate": "def",
-      "documentNr": 2,
-      "brutto": 2,
-      "netto": 2,
-      "tax": 2,
-      "customerName": "def",
-      "bill": 2,
-      "po": "def",
-      "status": "def",
-      "uid": "def"
-   }]
+         "id": 2,
+         "inputDate": "def",
+         "deliveryDate": "def",
+         "billCreatedDate": "def",
+         "paymentDate": "def",
+         "documentNr": 2,
+         "brutto": 2,
+         "netto": 2,
+         "tax": 2,
+         "customerName": "def",
+         "bill": 2,
+         "po": "def",
+         "status": "def",
+         "uid": "def"
+      }]
 #####
 
 ################################################## Status
@@ -136,7 +136,7 @@ POST {{baseUrl}}/Status
 Content-type: application/json
 
 {
-      "id": 1,
-      "name": "abc"
+         "id": 1,
+         "name": "abc"
    }
 #####

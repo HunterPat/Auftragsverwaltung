@@ -1,0 +1,15 @@
+.flex-container {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+  }
+  
+  .item {
+    margin: 5px 5px 10px 0px;
+    text-align: center;
+  }
+  .filterInput
+  {
+    width: auto;
+  }

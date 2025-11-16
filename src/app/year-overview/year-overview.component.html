@@ -1,0 +1,49 @@
+<div style="margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between;">
+    <h2>Jahresübersicht</h2>
+    <select class="form-select" style="width: 100px;" [(ngModel)]="selectedYear">
+        @for (year of GetLast10Years(); track $index) {
+        <option [value]="year">{{year}}</option>}
+    </select>
+</div>
+<hr>
+<div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+        <th scope="col"></th>
+        <th scope="col">Brutto</th>
+        <th scope="col">Netto</th>
+        <th scope="col">Steuer</th>
+    </tr>
+    </thead>
+    <tbody>
+        
+        <tr scope="row">
+            <td>Offen</td>
+            <td>{{yearInfo.value()?.verrechnetBrutto?.toFixed(2)?? 0}}</td>
+            <td>{{yearInfo.value()?.verrechnetNetto?.toFixed(2)?? 0}}</td>
+        </tr>
+        <tr scope="row">
+            <td>Bezahlt</td>
+            <td>{{yearInfo.value()?.bezahltBrutto?.toFixed(2)?? 0}}</td>
+            <td>{{yearInfo.value()?.bezahltNetto?.toFixed(2)?? 0}}</td>
+        </tr>
+        <tr scope="row">
+            <td>Nicht verrechnet</td>
+            <td>{{yearInfo.value()?.erledigtBrutto?.toFixed(2)?? 0}}</td>
+            <td>{{yearInfo.value()?.erledigtNetto?.toFixed(2)?? 0}}</td>
+        </tr>
+        <tr>
+            <td>In Arbeit</td>
+            <td>{{yearInfo.value()?.inArbeitBrutto?.toFixed(2)?? 0}}</td>
+            <td>{{yearInfo.value()?.inArbeitNetto?.toFixed(2)?? 0}}</td>
+        </tr>
+        <tr scope="row" style="border-top: 2px solid black;">
+            <th>Gesamt</th>
+            <td>{{yearInfo.value()?.sumBrutto?.toFixed(2)?? 0}}</td>
+            <td>{{yearInfo.value()?.sumNetto?.toFixed(2)?? 0}}</td>
+            <td>{{yearInfo.value()?.sumTax?.toFixed(2)?? 0}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
